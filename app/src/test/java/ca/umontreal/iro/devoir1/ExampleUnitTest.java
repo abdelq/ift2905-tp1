@@ -1,4 +1,4 @@
-package com.example.devoir1;
+package ca.umontreal.iro.devoir1;
 
 import org.junit.Test;
 
