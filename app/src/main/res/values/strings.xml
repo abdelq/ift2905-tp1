@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Devoir1</string>
+    <string name="app_name">Temps de Réaction</string>
+    <string name="attempt">Essai : %1$d de %2$d</string>
+    <string name="button_start">Cliquer sur le bouton pour commencer</string>
+    <string name="button_wait">Attendre que le bouton devient jaune</string>
+    <string name="button_early">Attendre que le bouton devient jaune avant de cliquer</string>
+    <string name="button_now">Cliquer maintenant</string>
+    <string name="button_good">Bon travail</string>
+    <string name="dialog_title">Test complété</string>
+    <string name="dialog_message">Temps de réaction moyen : %1$.3f secondes</string>
 </resources>

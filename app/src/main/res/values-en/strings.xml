@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reaction Time</string>
+    <string name="attempt">Attempt: %1$d of %2$d</string>
+    <string name="button_start">Click on the button to start</string>
+    <string name="button_wait">Wait until the button turns yellow</string>
+    <string name="button_early">Wait for the button to turn yellow before clicking</string>
+    <string name="button_now">Click now</string>
+    <string name="button_good">Good job</string>
+    <string name="dialog_title">Test complete</string>
+    <string name="dialog_message">Average reaction time: %1$.3f seconds</string>
+</resources>
