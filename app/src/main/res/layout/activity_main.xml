@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="TextView" />
 
-    <Chronometer
+    <ca.umontreal.iro.devoir1.Chronometer
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
