@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         button.setClickable(true);
 
         waiting = true;
-        chrono.setBase(SystemClock.elapsedRealtime());
+        chrono.reset();
         chrono.stop();
 
         button.postDelayed(new Runnable() {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         //button.setClickable(true);
 
         waiting = false;
-        chrono.setBase(SystemClock.elapsedRealtime());
+        chrono.reset();
         chrono.start();
     }
 

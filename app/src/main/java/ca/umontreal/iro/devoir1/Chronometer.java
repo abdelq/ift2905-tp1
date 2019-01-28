@@ -9,6 +9,12 @@ import android.view.View;
 import java.util.Locale;
 
 /**
+ * Dû à la faible fréquence de rafraîchissement de la valeur courante de temps
+ * et du texte affiché, qu'il n'est pas possible de modifier ces valeurs à
+ * travers une sous-classe et que le niveau d'encapsulation ne permet pas
+ * d'obtenir facilement le lapse de temps, nous sommes dans l'obligation de
+ * créer une version minimale de la classe qui convient à nos besoins.
+ *
  * @see android.widget.Chronometer
  */
 public class Chronometer extends AppCompatTextView {
@@ -87,6 +93,10 @@ public class Chronometer extends AppCompatTextView {
             }
         }
     };
+
+    public void reset() {
+        setBase(SystemClock.elapsedRealtime());
+    }
 
     public long getElapsedTime() {
         return mNow - mBase;
