@@ -94,10 +94,16 @@ public class Chronometer extends AppCompatTextView {
         }
     };
 
+    /*
+     * Remplace le temps de début par le temps actuel
+     */
     public void reset() {
         setBase(SystemClock.elapsedRealtime());
     }
 
+    /*
+     * @return temps écoulé depuis le début du chronomètre
+     */
     public long getElapsedTime() {
         return mNow - mBase;
     }

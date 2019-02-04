@@ -4,7 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,17 +14,15 @@ import android.widget.TextView;
 import java.util.Random;
 
 /**
- * Temps de réaction
- *
- * La classe MainActivity fournit des méthodes pour la main activity
- * qui affiche un champ de texte où le numéro de l'essai est indiqué
- * et un immense bouton occupant l'espace restant.
+ * La classe MainActivity fournit des méthodes pour l'activité principale
+ * qui affiche un champ de texte où le numéro de l'essai est indiqué, un
+ * chronomètre et un immense bouton occupant l'espace restant.
  */
 public class MainActivity extends AppCompatActivity {
     private TextView attempt;
     private Chronometer chrono;
     private Button button;
-    private Builder dialog;
+    private AlertDialog dialog;
 
     private int attempts, maxAttempts = 5;
     private long elapsed;
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         // Création du dialogue de fin
-        dialog = new Builder(this);
-        dialog.setTitle(R.string.dialog_title)
+        dialog = new Builder(this)
+                .setTitle(R.string.dialog_title)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDismiss(DialogInterface dialog) {
                         reset();
                     }
-                });
+                }).create();
     }
 
     public void onButtonClick(View v) {
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (++attempts > maxAttempts) {
             double average = elapsed / (maxAttempts * 1000.);
             dialog.setMessage(getString(R.string.dialog_message, average));
-            dialog.create().show();
+            dialog.show();
             return;
         }
 
