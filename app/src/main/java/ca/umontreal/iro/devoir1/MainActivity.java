@@ -16,11 +16,9 @@ import java.util.Random;
 /**
  * Temps de réaction
  *
- *
  * La classe MainActivity fournit des méthodes pour la main activity
- * qui affiche un champ de texte où le numéro de l'essai est indiqué 
+ * qui affiche un champ de texte où le numéro de l'essai est indiqué
  * et un immense bouton occupant l'espace restant.
- *
  */
 public class MainActivity extends AppCompatActivity {
     private TextView attempt;
@@ -42,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         chrono = findViewById(R.id.chronometer);
         button = findViewById(R.id.button);
 
-        alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        // Création du dialogue de fin
+        alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(R.string.dialog_title);
         alertDialog.setButton(
                 AlertDialog.BUTTON_POSITIVE,
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         reset();
-                        dialog.dismiss();
                     }
                 }
         );
@@ -73,8 +71,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Si les 5 essais sont complétés avec succès, affichage d'un popup
-    // Sinon nouvel essai et retour à la phase d'attente
+    /*
+     * Si tout les essais sont complétés avec succès, affichage d'un popup.
+     * Sinon nouvel essai et retour à la phase d'attente
+     */
     private void newAttempt() {
         if (++attempts > maxAttempts) {
             double average = elapsed / (maxAttempts * 1000.);
@@ -87,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
         setButtonWait();
     }
 
-    // Phase d'attente
+    /*
+     * Phase d'attente pour une durée aléatoire entre 3 et 10 secondes
+     */
     private void setButtonWait() {
         button.setText(getString(R.string.button_wait));
         button.getBackground().clearColorFilter();
@@ -105,8 +107,10 @@ public class MainActivity extends AppCompatActivity {
         }, rand.nextInt(7001) + 3000);
     }
 
-    // L'usager clique avant que le bouton soit jaune,
-    // le bouton devient rouge et un message d'erreur s'affiche
+    /*
+     * L'usager clique avant que le bouton soit jaune, le bouton
+     * devient rouge et un message d'erreur s'affiche
+     */
     private void setButtonEarly() {
         button.setText(getString(R.string.button_early));
         button.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
@@ -121,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
         }, 1500);
     }
 
-    // Fin de la période d'attente, le bouton devient jaune
+    /*
+     * Fin de la période d'attente, le bouton devient jaune
+     */
     private void setButtonNow() {
         button.setText(getString(R.string.button_now));
         button.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.MULTIPLY);
@@ -132,8 +138,10 @@ public class MainActivity extends AppCompatActivity {
         chrono.start();
     }
 
-    // L'usager clique lorsque le bouton est jaune,
-    // le bouton devient vert et un message de succès s'affiche
+    /*
+     * L'usager clique lorsque le bouton est jaune, le bouton
+     * devient vert et un message de succès s'affiche
+     */
     private void setButtonGood() {
         button.setText(getString(R.string.button_good));
         button.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
@@ -150,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
         }, 1500);
     }
 
-    // Retour à la phase de repos
+    /*
+     * Retour à la phase initale
+     */
     private void reset() {
         attempts = 0;
         elapsed = 0;
