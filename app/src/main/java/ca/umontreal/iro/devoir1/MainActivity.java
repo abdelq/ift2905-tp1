@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView attempt;
     private Chronometer chrono;
     private Button button;
-    private AlertDialog alertDialog;
+    private Builder dialog;
 
     private int attempts, maxAttempts = 5;
     private long elapsed;
@@ -41,18 +41,20 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         // Création du dialogue de fin
-        alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(R.string.dialog_title);
-        alertDialog.setButton(
-                AlertDialog.BUTTON_POSITIVE,
-                getString(android.R.string.ok),
-                new DialogInterface.OnClickListener() {
+        dialog = new Builder(this);
+        dialog.setTitle(R.string.dialog_title)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         reset();
                     }
-                }
-        );
+                })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        reset();
+                    }
+                });
     }
 
     public void onButtonClick(View v) {
@@ -78,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
     private void newAttempt() {
         if (++attempts > maxAttempts) {
             double average = elapsed / (maxAttempts * 1000.);
-            alertDialog.setMessage(getString(R.string.dialog_message, average));
-            alertDialog.show();
+            dialog.setMessage(getString(R.string.dialog_message, average));
+            dialog.create().show();
             return;
         }
 
